@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script>
+	$(document).ready(function(){
+	$.ajax({
+  url: "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&_jsonp=logResults",
+  dataType: "jsonp",
+  jsonpCallback: "logResults"});
+  
+               var color = '#'; // hexadecimal 
+                var letters = ['FF0000','00FF00','f9d74d','00FFFF','FF00FF','C0C0C0','342224','BC5B62','397BB0','bb00ff']; //Set your colors here
+color += letters[Math.floor(Math.random()*letters.length)];       
+  document.getElementById("posts").style.color = color; 
+  document.getElementById("button1").style.background = color;
+  document.getElementById("posts1").style.background = color;
+  document.getElementById("post").style.background = color;
+  
+  
+  $("#button1").click(function(){
+$.ajax({
+  url: "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&_jsonp=logResults",
+  dataType: "jsonp",
+  jsonpCallback: "logResults"
+});
+
+
+      });
+});
+ function logResults(json){
+  $("#posts").html(json[0].content + "<br> -" + json[0].title);
+}
+function ran_col() { //function name
+                var color = '#'; // hexadecimal 
+                var letters = ['FF0000','00FF00','0000FF','FFFF00','00FFFF','FF00FF','C0C0C0']; //Set your colors here
+color += letters[Math.floor(Math.random()*letters.length)];       
+  document.getElementById("posts").style.color = color; 
+  document.getElementById("button1").style.background = color;
+  document.getElementById("posts1").style.background = color;
+  document.getElementById("post").style.background = color;
+            }
+	</script>
+	<style>
+	.container{
+  height:400px !important;
+  width:60%;
+    background-color:white;
+  margin:10% 10% 10% 10%;
+  border-radius:15px;
+}
+.new-quote{
+  position:relative;
+  font-size:25px;
+}
+.twitter{
+left:0px !important;
+bottom:0px !important;
+    width: 30px;
+	padding: 5px;
+    margin: 5px;
+	color:#fff!important;
+}
+#button1{
+float:right;
+bottom:0px !important;
+margin-bottom:5px !important;
+color:#fff;
+}
+	</style>
+	</head>
+	<body id="post">
+		<div class="container"> 
+			<p id="posts"></p>
+			<div class="row new-quote">
+			<div class="col-md-6">
+			<i class="fa fa-twitter twitter" id="posts1" aria-hidden="true"></i></div>
+			<div class="col-md-6">
+			<button type="button" id="button1" class="btn " value="submit" onclick="ran_col();" >New Quote</button></div>
+			</div>
+		</div>
+		&nbsp;
+	</body>
+</html>
